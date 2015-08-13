@@ -49,9 +49,9 @@ export function computeMedians(path) {
     R.range(0, num));
 }
 
-export function computeMinDistance(path, point) {
+export function computeMinDistance(path, p) {
   var medians = computeMedians(path);
-  var radii = R.map(point.distance(point), medians);
+  var radii = R.map(point.distance(p), medians);
   return R.reduce(function (a, b) {
     return a, b, a < b ? a : b;
   }, Infinity, radii);
