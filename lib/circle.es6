@@ -9,11 +9,11 @@ export class Circle {
   }
 };
 
-export function equals(c1, c2) {
+export var equals = R.curry(function equals(c1, c2) {
   return (c1.radius === c2.radius && point.equals(c1.center, c2.center));
-};
+});
 
-export function computeNPointsOnPerimeter(circle, n) {
+export var computeNPointsOnPerimeter = R.curry(function computeNPointsOnPerimeter(circle, n) {
   var alpha = Math.PI * 2 / n;
   return R.map(
     function(i) {
@@ -24,9 +24,9 @@ export function computeNPointsOnPerimeter(circle, n) {
           Math.sin(theta) * circle.radius));
     },
     R.range(0, n));
-};
+});
 
-export function computeIntersectionPoints(c1, c2) {
+export var computeIntersectionPoints = R.curry(function computeIntersectionPoints(c1, c2) {
   if (equals(c1, c2)) return [];
 
   var a = c1.center.x,
@@ -58,4 +58,4 @@ export function computeIntersectionPoints(c1, c2) {
     y2 = b + fTimesKOverP + eOverPTimesSqrtR2minusK2;
 
   return [new point.Point(x1, y1), new point.Point(x2, y2)];
-};
+});
