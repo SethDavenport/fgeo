@@ -8,7 +8,7 @@ export class Path {
   }
 }
 
-export function centroid(path) {
+export var centroid = R.curry(function centroid(path) {
   var sumX = 0;
   var sumY = 0;
 
@@ -20,9 +20,9 @@ export function centroid(path) {
   return new point.Point(
     sumX/path.vertices.length,
     sumY/path.vertices.length);
-}
+});
 
-export function resize(path, ratio) {
+export var resize = R.curry(function resize(path, ratio) {
   var c = centroid(path);
   var newVertices = path.vertices.map(function(v) {
     var deltaX = c.x - v.x;
@@ -36,9 +36,9 @@ export function resize(path, ratio) {
   });
 
   return new Path(newVertices);
-}
+});
 
-export function computeMedians(path) {
+export var computeMedians = R.curry(function computeMedians(path) {
   var num = path.vertices.length;
   return R.map(
     function getMedian(i) {
@@ -47,12 +47,12 @@ export function computeMedians(path) {
         path.vertices[(i+1)%num]);
     },
     R.range(0, num));
-}
+});
 
-export function computeMinDistance(path, p) {
+export var computeMinDistance = R.curry(function computeMinDistance(path, p) {
   var medians = computeMedians(path);
   var radii = R.map(point.distance(p), medians);
   return R.reduce(function (a, b) {
     return a, b, a < b ? a : b;
   }, Infinity, radii);
-}
+});
