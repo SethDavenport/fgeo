@@ -1,11 +1,11 @@
 {
   "name": "fgeo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Functional Geometry Utilities",
-  "main": "dist/fgeo.js",
+  "main": "lib/fgeo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel lib -sd dist",
+    "compile": "babel src -sd lib",
     "prepublish": "npm run compile"
   },
   "repository": {
