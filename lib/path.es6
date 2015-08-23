@@ -50,8 +50,7 @@ export var computeMedians = R.curry(function computeMedians(path) {
 });
 
 export var computeMinDistance = R.curry(function computeMinDistance(path, p) {
-  var medians = computeMedians(path);
-  var radii = R.map(point.distance(p), medians);
+  var radii = R.map(point.distance(p), path.vertices);
   return R.reduce(function (a, b) {
     return a, b, a < b ? a : b;
   }, Infinity, radii);
